@@ -1,1 +1,0 @@
-<?php /**PATH D:\XAMPP\htdocs\HandyLaundry\resources\views/LaundromatHome.blade.php ENDPATH**/ ?>
