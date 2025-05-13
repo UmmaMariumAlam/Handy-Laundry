@@ -29,6 +29,6 @@ class Laundromat extends Model
 
     public function Laundry_orders(): HasOneorMany 
 {
-    return $this->hasMany(Laundry_order::class);
+    return $this->hasoneorMany(Laundry_order::class);
 }
 }
