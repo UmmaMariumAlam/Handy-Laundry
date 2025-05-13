@@ -20,6 +20,6 @@ class Customer extends Model
 
     public function laundry_orders(): HasOneorMany 
 {
-    return $this->hasMany(Laundry_order::class);
+    return $this->hasOneorMany(Laundry_order::class);
 }
 }
