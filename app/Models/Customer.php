@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
@@ -18,9 +19,9 @@ class Customer extends Model
     ];
     protected $hidden=['password'];
 
-    public function laundry_orders(): HasMany 
+    public function laundryOrders(): hasmany
 {
-    return $this->hasMany(Laundry_order::class);
+    return $this->hasMany(LaundryOrder::class);
 }
 }
 
