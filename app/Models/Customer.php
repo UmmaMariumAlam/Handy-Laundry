@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
-    protected $table = 'customer';
-    protected $primaryKey = 'customer_id';
+    protected $table='customer';
+    protected $primaryKey='customer_id';
     protected $fillable = [
         'name',
         'email',
@@ -16,10 +16,11 @@ class Customer extends Model
         'phone',
         'address'
     ];
-    protected $hidden = ['password'];
+    protected $hidden=['password'];
 
-    public function laundry_orders(): HasOneorMany 
+    public function laundry_orders(): HasMany 
 {
-    return $this->hasOneorMany(Laundry_order::class);
+    return $this->hasMany(Laundry_order::class);
 }
 }
+
