@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LaundryOrder extends Model
 {
+    protected $table='laundryorders';
     protected $primaryKey='order_id'; 
     protected $fillable=[
          'customer_id',
