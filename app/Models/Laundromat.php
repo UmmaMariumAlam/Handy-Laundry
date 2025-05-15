@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Laundromat extends Model
 {
-    protected $table = 'laundromat';
-    protected $primaryKey = 'laundromat_id';
-    
-    protected $fillable = [
+    protected $table='laundromat';
+    protected $primaryKey='laundromat_id';
+    protected $fillable=[
         'laundromat_name',
         'representative_name',
         'business_email',
@@ -22,13 +21,14 @@ class Laundromat extends Model
         'avg_ratings'
     ];
 
-    protected $casts = [
-        'price_per_item' => 'float',
-        'avg_ratings' => 'float'
+    protected $casts=[
+        'price_per_item'=>'float',
+        'avg_ratings'=>'float'
     ];
 
-    public function Laundry_orders(): HasOneorMany 
+    public function Laundry_orders():HasMany 
 {
-    return $this->hasoneorMany(Laundry_order::class);
+    return $this->hasMany(Laundry_order::class);
+}
 }
 }
