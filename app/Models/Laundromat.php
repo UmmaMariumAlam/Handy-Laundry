@@ -26,9 +26,9 @@ class Laundromat extends Model
         'avg_ratings'=>'float'
     ];
 
-    public function Laundry_orders():HasMany 
+    public function LaundryOrders():HasMany 
 {
-    return $this->hasMany(Laundry_order::class);
+    return $this->hasMany(LaundryOrder::class);
 }
 }
 }
