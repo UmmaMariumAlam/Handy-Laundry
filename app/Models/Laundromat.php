@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Laundromat extends Model
 {
-    protected $table='laundromat';
+    protected $table='laundromats';
     protected $primaryKey='laundromat_id';
     protected $fillable=[
         'laundromat_name',
