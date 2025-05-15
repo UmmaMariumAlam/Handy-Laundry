@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Laundry_Order extends Model
+class LaundryOrder extends Model
 {
     protected $primaryKey='order_id'; 
     protected $fillable=[
@@ -22,7 +22,7 @@ class Laundry_Order extends Model
         'pickup_method'
         ];
 
-    public function customer():BelongsTo
+    public function customers():BelongsTo
     {
         return $this->belongsTo(Customer::class,'customer_id');
     }
