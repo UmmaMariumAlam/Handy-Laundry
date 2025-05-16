@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\UserRegisterController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\Auth\LaundromatRegisterController;
 use App\Http\Controllers\Auth\LaundromatLoginController;
-
+use App\Http\Controllers\Auth\CustomerAuthController;
 
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
@@ -56,3 +56,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('coupons', [AdminController::class, 'storeCoupon'])->name('coupon.store'); // Add new coupon
 });
  Route::delete('/admin/coupon/{id}', [AdminController::class, 'deletecoupon'])->name('admin.coupon.delete');
+ 
+ 
+Route::get('customer/register', [CustomerAuthController::class, 'showRegisterForm'])->name('customer.register');
+Route::post('customer/register', [CustomerAuthController::class, 'register']);
+
+Route::get('customer/login', [CustomerAuthController::class, 'showLoginForm'])->name('customer.login');
+Route::post('customer/login', [CustomerAuthController::class, 'login']);
+
+Route::get('customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
+Route::get('customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
+
