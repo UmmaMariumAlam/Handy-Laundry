@@ -15,7 +15,7 @@ class OrderControllerTest extends TestCase
 
     public function test_customer_can_place_order()
     {
-        // Create a customer and laundromat
+       
         $customer = Customer::factory()->create();
     
         $laundromat = \App\Models\Laundromat::create([
@@ -30,10 +30,10 @@ class OrderControllerTest extends TestCase
             'price_per_item' => 100,
         ]);
 
-        // Simulate logged-in customer in session
+      
         $this->withSession(['customer' => $customer]);
 
-        // Place an order
+       
         $response = $this->post(route('orders.store'), [
             'laundromat_id' => $laundromat->laundromat_id,
             'service_type' => 'drywash',
