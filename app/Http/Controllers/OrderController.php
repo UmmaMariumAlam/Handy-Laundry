@@ -9,9 +9,7 @@ use App\Models\Laundromat;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         $customer = session('customer');
@@ -19,7 +17,7 @@ class OrderController extends Controller
             return redirect()->route('customer.login');
     }
         
-        // Fetch orders for the logged-in customer
+        
         $orders = \App\Models\Order::where('customer_id', $customer->customer_id)
             ->orderByDesc('created_at')
             ->get();
@@ -28,9 +26,7 @@ class OrderController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         if (!session('customer')) {
@@ -78,13 +74,11 @@ class OrderController extends Controller
         return redirect()->route('customer.dashboard')->with('status', 'Order placed successfully!');
     }
 
-        /**
-         * Display the specified resource.
-         */
+      
     public function show(Order $order)
     {
         //
-    // Optionally, check if the logged-in customer owns this order
+   
         $customer = session('customer');
         if (!$customer || $order->customer_id != $customer->customer_id) {
             abort(403, 'Unauthorized');
