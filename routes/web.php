@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth\LaundromatRegisterController;
+use App\Http\Controllers\Auth\LaundromatLoginController;
+use App\Http\Controllers\LaundromatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,15 +43,25 @@ Route::middleware(['auth'])->get('/dashboard', function () {
 });
 
 
+//Laundromat_auth
 Route::get('laundromat/register', [LaundromatRegisterController::class, 'showRegisterForm'])->name('laundromat.register');
-Route::post('laundromat/register', [LaundromatRegisterController::class, 'register']);
+Route::post('laundromat/register', [LaundromatRegisterController::class, 'register'])->name('laundromat.register.submit');
 Route::get('laundromat/login', [LaundromatLoginController::class, 'showLoginForm'])->name('laundromat.login');
-Route::post('laundromat/login', [LaundromatLoginController::class, 'login']);
+Route::post('laundromat/login', [LaundromatLoginController::class, 'login'])->name('laundromat.login.submit');
 Route::post('laundromat/logout', [LaundromatLoginController::class, 'logout'])->name('laundromat.logout');
 
-Route::middleware(['auth:laundromat'])->get('laundromat/dashboard', function () {
-    return view('laundromat.dashboard');
-})->name('laundromat.dashboard');
+
+//All laundromat Routes
+Route::middleware(['auth:laundromat'])->prefix('laundromat')->name('laundromat.')->group(function () {
+    Route::get('/dashboard', [LaundromatController::class, 'index'])->name('dashboard');
+    Route::post('/order/{id}/accept', [LaundromatController::class, 'acceptOrder'])->name('acceptOrder');
+    Route::post('/order/{id}/reject', [LaundromatController::class, 'rejectOrder'])->name('rejectOrder');
+    Route::get('/processing-orders', [LaundromatController::class, 'processingOrders'])->name('processingOrders');
+    Route::post('/order/{id}/complete', [LaundromatController::class, 'markCompleted'])->name('completeOrder');
+    Route::get('/sales-history', [LaundromatController::class, 'salesHistory'])->name('salesHistory');
+    Route::get('/edit-profile', [LaundromatController::class, 'editProfile'])->name('editProfile');
+    Route::post('/update-profile', [LaundromatController::class, 'updateProfile'])->name('updateProfile');
+});
 
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
