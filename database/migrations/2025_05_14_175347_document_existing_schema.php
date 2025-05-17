@@ -1,0 +1,82 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        if (!Schema::hasTable('customers')) {
+            Schema::create('customers', function (Blueprint $table) 
+            {
+                $table->id('customer_id');
+                $table->string('name', 50);
+                $table->string('email', 255)->unique();
+                $table->string('password', 255);
+                $table->string('phone', 20);
+                $table->string('address', 255);
+                $table->timestamps();
+            }
+        );}
+
+        if (!Schema::hasTable('laundromats')) {
+            Schema::create('laundromats', function (Blueprint $table) 
+            {
+                $table->id('laundromat_id');
+                $table->string('laundromat_name', 50)->unique();
+                $table->string('representative_name', 50);
+                $table->string('business_email', 200)->unique();
+                $table->string('password', 255);
+                $table->string('area', 20);
+                $table->string('operating_hours', 20);
+                $table->string('phone', 20);
+                $table->text('address');
+                $table->float('price_per_item');
+                $table->float('avg_ratings', 2)->default(0.0);
+                $table->timestamps();
+            });
+        }
+        if (!Schema::hasTable('Orders')) {
+            Schema::create('Orders', function (Blueprint $table) 
+            {
+                $table->id('order_id');
+                $table->foreignId('customer_id')->constrained('customers', 'customer_id')->onDelete('cascade');
+                $table->foreignId('laundromat_id')->constrained('laundromats', 'laundromat_id')->onDelete('cascade');
+                $table->enum('order_status', ['pending', 'processing', 'complete', 'rejected'])->default('pending');
+                $table->dateTime('last_delivery_date')->nullable();
+                $table->enum('service_type', ['drywash', 'wash_fold', 'ironing',])->default('wash_fold');
+                $table->enum('cloth_type', ['shirt_top','pants','saree', 'long_dress','suit_blazer','carpet','curtains','bedding','other']);
+                $table->string('special_instructions', 200)->nullable();
+                $table->integer('cloth_qty')->unsigned()->default(1);
+                $table->string('laundromat_name', 50); 
+                $table->float('item_price', 2);
+                $table->enum('pickup_method', ['self-pickup', 'hire_deliverer'])->default('self-pickup');
+                $table->timestamps();
+
+                $table->index(['order_status']);
+                $table->index(['customer_id', 'laundromat_id']);
+                $table->index(['laundromat_id']);
+               
+            });
+        }    
+        
+    }      
+        
+   
+                
+
+                /**
+                 * Reverse the migrations.
+                 */
+                public function down(): void
+                {
+                    Schema::dropIfExists('Orders');
+                    Schema::dropIfExists('laundromats');
+                    Schema::dropIfExists('customers');
+                }
+};
