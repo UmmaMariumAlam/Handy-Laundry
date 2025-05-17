@@ -1,0 +1,364 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+.dashboard-container {
+    width: 60%;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.dashboard-container p strong {
+    color: #333;
+}
+
+.order-box {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.order-box button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-box button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.order-box button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.order-box input[type="text"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.dashboard-container a {
+    display: inline-block;
+    margin: 10px 0;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.dashboard-container a:hover {
+    text-decoration: underline;
+}
+ /*Laundromat side*/
+
+
+ .laundro-body {
+    background-color: #e6f2ff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.laundro-dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.laundro-header-container h2 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.laundro-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e1e5eb;
+    margin-bottom: 20px;
+}
+
+.laundro-info-section {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.laundro-info-section p {
+    margin: 8px 0;
+    color: #495057;
+}
+
+.laundro-btn, .logout-button, .laundro-edit-profile-button {
+    display: block;
+    min-width: 120px;
+    box-sizing: border-box;
+    background-color: #91ace3;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.laundro-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+}
+
+.laundro-table th {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+.laundro-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.laundro-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    min-width: 120px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.laundro-btn:hover {
+    background-color: #2980b9;
+}
+
+.laundro-logout-btn {
+    background-color: #e74c3c;
+}
+
+.laundro-logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.laundro-edit-profile-btn {
+    background-color: #2ecc71;
+}
+
+.laundro-edit-profile-btn:hover {
+    background-color: #27ae60;
+}
+
+.laundro-action-btn {
+    min-width: 80px;
+    padding: 6px 12px;
+}
+
+.laundro-accept-btn {
+    background-color: #2ecc71;
+}
+
+.laundro-reject-btn {
+    background-color: #95a5a6;
+}
+
+.laundro-actions-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .laundro-header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .laundro-header-actions {
+        margin-top: 10px;
+    }
+}
+
+/* Edit Profile Page Styles */
+.laundro-edit-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.laundro-edit-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.laundro-edit-form label {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: -10px;
+}
+
+.laundro-edit-form input {
+    padding: 10px;
+    border: 1px solid #e1e5eb;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.laundro-edit-form input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.laundro-edit-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/*Processing Orders*/
+
+.laundro-table {
+    border: 1px solid #e1e5eb; 
+}
+
+.laundro-table th, 
+.laundro-table td {
+    border: 1px solid #e1e5eb; 
+}
+
+.laundro-table th {
+    border-bottom: 2px solid #4682b4; 
+}
+.laundro-processing-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.laundro-processing-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.laundro-alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 15px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.laundro-alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 15px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.laundro-complete-btn {
+    background-color: #3cb371;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.laundro-complete-btn:hover {
+    background-color: #2e8b57;
+}
+
+.laundro-back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Sales History Page Specific Styles */
+.laundro-sales-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.laundro-sales-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.laundro-back-btn {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    width: fit-content;
+}
+/*
+.laundro-btn:hover, .logout-button:hover, .laundro-edit-profile-button:hover{
+    background-color: rgb(92, 110, 175);
+}
+*/
+
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        width: 90%;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
