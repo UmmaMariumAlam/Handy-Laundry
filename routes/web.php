@@ -67,3 +67,22 @@ Route::post('customer/login', [CustomerAuthController::class, 'login']);
 Route::get('customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
 Route::get('customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
 
+
+
+#customer
+Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
+Route::post('/customer', [CustomerController::class, 'store'])->name('customer.store');
+Route::get('/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+Route::get('/customer/profile', [CustomerController::class, 'profile'])->name('customer.profile');
+// Route::put('/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
+
+Route::match(['put', 'patch'], '/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
+
+
+//order routes
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+Route::get('/laundromats/{id}/details', [OrderController::class, 'getLaundromatDetails'])->name('laundromats.details');
+//
