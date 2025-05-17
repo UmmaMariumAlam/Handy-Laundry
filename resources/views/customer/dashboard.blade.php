@@ -1,4 +1,4 @@
-{{-- filepath: e:\xampp\htdocs\dashboard\470_laundry_project\resources\views\customer\dashboard.blade.php --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
