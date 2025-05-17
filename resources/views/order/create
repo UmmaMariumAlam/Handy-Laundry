@@ -1,0 +1,125 @@
+{{-- filepath: resources/views/orders/create.blade.php --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place New Order</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { background: linear-gradient(135deg, #e0e7ff 0%, #f0f4f8 100%); min-height: 100vh; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .order-container { max-width: 540px; margin: 60px auto; background: #fff; border-radius: 18px; box-shadow: 0 6px 32px rgba(60,72,88,0.10); padding: 2.5rem 2.5rem 2rem 2.5rem; }
+        .order-title { font-size: 2rem; font-weight: 700; color: #2563eb; margin-bottom: 1.5rem; text-align: center; }
+        .form-group { margin-bottom: 1.3rem; }
+        label { display: block; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; }
+        input, select, textarea { width: 100%; padding: 0.7rem 1rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; background: #f8fafc; color: #374151; transition: border 0.2s; }
+        input:focus, select:focus, textarea:focus { border: 1.5px solid #2563eb; outline: none; background: #fff; }
+        .submit-btn { background: #2563eb; color: #fff; padding: 0.7rem 2.2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; border: none; transition: background 0.2s; cursor: pointer; margin-top: 0.5rem; display: block; width: 100%; }
+        .submit-btn:hover { background: #1d4ed8; }
+        .back-link { display: inline-block; margin-top: 1.5rem; color: #2563eb; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+        .back-link:hover { color: #1d4ed8; text-decoration: underline; }
+        .error-message { color: #dc2626; background: #fee2e2; border: 1px solid #fecaca; padding: 0.7rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-size: 1rem; }
+        .success-message { color: #15803d; background: #dcfce7; border: 1px solid #bbf7d0; padding: 10px 16px; border-radius: 6px; margin-bottom: 18px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="order-container">
+        <div class="order-title">Place New Order</div>
+        @if(!session('customer'))
+            <div class="error-message">
+                You must be logged in as a customer to place an order.
+            </div>
+            <a href="{{ route('customer.login') }}" class="back-link">Go to Login</a>
+        @else
+            @if(session('status'))
+                <div class="success-message">{{ session('status') }}</div>
+            @endif
+            @if($errors->any())
+                <div class="error-message">
+                    <ul style="margin:0; padding-left:1.2rem;">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('orders.store') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="laundromat_id">Laundromat</label>
+                    <select id="laundromat_id" name="laundromat_id" required>
+                        <option value="">Select Laundromat</option>
+                        @foreach($laundromats as $laundromat)
+                            <option value="{{ $laundromat->laundromat_id }}">{{ $laundromat->laundromat_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price_per_item">Price Per Item (BDT)</label>
+                    <input type="text" id="price_per_item" name="price_per_item" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="laundromat_address">Laundromat Address</label>
+                    <input type="text" id="laundromat_address" name="laundromat_address" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="service_type">Service Type</label>
+                    <select id="service_type" name="service_type" required>
+                        <option value="">Select Service</option>
+                        <option value="drywash">Dry Wash</option>
+                        <option value="wash_fold">Wash & Fold</option>
+                        <option value="ironing">Ironing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cloth_type">Cloth Type</label>
+                    <select id="cloth_type" name="cloth_type" required>
+                        <option value="">Select Cloth Type</option>
+                        <option value="shirt_top">Shirt/Top</option>
+                        <option value="pants">Pants</option>
+                        <option value="saree">Saree</option>
+                        <option value="long_dress">Long Dress</option>
+                        <option value="suit_blazer">Suit/Blazer</option>
+                        <option value="carpet">Carpet</option>
+                        <option value="curtains">Curtains</option>
+                        <option value="bedding">Bedding</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cloth_qty">Cloth Quantity</label>
+                    <input type="number" id="cloth_qty" name="cloth_qty" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickup_method">Pickup Method</label>
+                    <select id="pickup_method" name="pickup_method" required>
+                        <option value="">Select Method</option>
+                        <option value="self-pickup">Self Pickup</option>
+                        <option value="hire_deliverer">Hire Deliverer</option>
+                    </select>   
+                </div>
+                <div class="form-group">
+                    <label for="special_instructions">Special Instructions</label>
+                    <textarea id="special_instructions" name="special_instructions" rows="3" placeholder="Any instructions?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Place Order</button>
+            </form>
+            <a href="{{ route('customer.dashboard') }}" class="back-link">&larr; Back to Dashboard</a>
+        @endif
+    </div>
+    <script>
+        $('#laundromat_id').on('change', function() {
+            var laundromatId = $(this).val();
+            if (laundromatId) {
+                $.get('{{ url('/laundromats') }}/' + laundromatId + '/details', function(data) {
+                    $('#price_per_item').val(data.price_per_item);
+                    $('#laundromat_address').val(data.address);
+                });
+            } else {
+                $('#price_per_item').val('');
+                $('#laundromat_address').val('');
+            }
+        });
+    </script>
+</body>
+</html>
