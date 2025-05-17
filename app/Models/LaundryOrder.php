@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class LaundryOrder extends Model
+class Order extends Model
 {   
     protected $table='laundryorders';
     protected $primaryKey='order_id'; 
