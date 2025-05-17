@@ -14,7 +14,7 @@ class CustomerController extends Controller
 {
     
     public function profile() {
-    $customer = session('customer'); // or use Auth::user() if you use Laravel Auth
+    $customer = session('customer'); 
     if (!$customer) {
         return redirect()->route('customer.login');
     }
@@ -46,9 +46,7 @@ class CustomerController extends Controller
     
     public function update(Customer $customer, Request $request)
     {
-        // \Log::info('Update called', ['customer_id' => $customer->customer_id, 'request' => $request->all()]);
-        // \Log::info('CustomerController@update called', ['customer_id' => $customer->customer_id, 'request' => $request->all()]);
-        // dump('CustomerController@update called', $request->all());
+        
         $data = $request->validate([
             'name' => 'required|string|max:50',
             'address' => 'required|string|max:255',
