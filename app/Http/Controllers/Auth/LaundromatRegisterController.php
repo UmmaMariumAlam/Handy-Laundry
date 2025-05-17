@@ -24,8 +24,7 @@ class LaundromatRegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'area' => 'nullable|string|max:255', 
             'operating_hours' => 'nullable|string|max:255',
-            'price_per_item' => 'nullable|numeric',  
-            'avg_ratings' => 'nullable|numeric',  
+            'price_per_item' => 'nullable|numeric',    
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
         ]);
@@ -38,8 +37,7 @@ class LaundromatRegisterController extends Controller
             'password' => Hash::make($request->password),
             'area' => $request->area, 
             'operating_hours' => $request->operating_hours,
-            'price_per_item' => $request->price_per_item, 
-            'avg_ratings' => $request->avg_ratings,  
+            'price_per_item' => $request->price_per_item,  
             'phone' => $request->phone,
             'address' => $request->address,
         ]);
